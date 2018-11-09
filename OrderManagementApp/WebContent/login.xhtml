@@ -15,52 +15,52 @@
   
   <!-- BEGIN LOGIN FORM -->
   	<b:row>
-  	 <b:column col-md="6" offset="3" styleClass="app-login-form">
+  	 <b:column col-md="4" offset="4" styleClass="app-login-form">
   	 <b:row>
   	 <b:column col-md="10" offset="1">
   	 	<b:image library="images" name="acme-logo-black.svg" styleClass="app-logo"/>
-  	 	<h3>Order Management</h3>
-  	 	<p>Please Login</p>
+  	 	<h3>Order Management | Login</h3>
   	 </b:column>
   	 </b:row>
+  	 
   	<h:form id="loginForm">
       <b:row tooltip="Hint: username = GCURedTeam">
         <b:column col-sm="10" offset="1">
-        <h:outputText value="Please enter your username." for="username" />
+        <!-- <h:outputText value="Please enter your username." for="username" /> -->
           <b:inputText placeholder="Username" id="username" value="#{loginController.username}"
                        ajax="true" autocomplete="false" update="@(.message)">
             <f:facet name="prepend">
               <b:icon name="user" />
             </f:facet>
 	      </b:inputText>
-        </b:column>
-        <b:column col-md="10" offset="1" style-class="message">
-          <b:message for="username" />
+	      <b:column col-md="12" styleClass="message">
+          	<b:message for="username" />
+         </b:column>
         </b:column>
       </b:row>
+      
       <b:row tooltip="Hint: password = password">
         <b:column col-md="10" offset="1">
-        <h:outputText value="Please enter your password." />
+        <!-- <h:outputText value="Please enter your password." /> -->
           <b:inputSecret placeholder="Password" id="password" value="#{loginController.password}"
                          ajax="true" autocomplete="false" update="@(.message)">
             <f:facet name="prepend">
               <b:iconAwesome name="key" />
             </f:facet>
           </b:inputSecret>
-        </b:column>
-        <b:column col-md="10" offset="1" styleClass="message">
-          <b:message for="password"/>
+          <b:column col-md="12" styleClass="message">
+          	<b:message for="password"/>
+         </b:column>
         </b:column>
       </b:row>
+      
       <b:row>
       <b:column col-md="10" offset="1">
         <b:column col-md="6">
-          <b:commandButton value="login" onclick="ajax:loginController.login()" update="@form" look="primary"
-                           style="width:100%" />
+          <b:commandButton value="login" onclick="ajax:loginController.login()" update="@form" look="primary" style="width:100%" />
         </b:column>
         <b:column col-md="6">
-          <b:commandButton value="register" onclick="ajax:loginBean.forgotPassword()" update="@form"
-                           look="danger" style="width:100%" />
+          <b:commandButton value="register" href="register.xhtml" look="danger" style="width:100%" />
         </b:column>
         </b:column>
       </b:row>

@@ -15,6 +15,7 @@
   <servlet-name>Faces Servlet</servlet-name>
   <url-pattern>*.xhtml</url-pattern>    
  </servlet-mapping>  
+
  <!-- Using the slate BootFaces Theme -->
 <context-param>
     <param-name>BootsFaces_THEME</param-name>

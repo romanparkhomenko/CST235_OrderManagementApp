@@ -4,13 +4,13 @@ import java.io.IOException;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.context.FacesContext;
 
 import model.User;
 
 @ManagedBean
-@SessionScoped
+@ApplicationScoped
 public class RegistrationController {
 	
 	// Declare variables for LoginController
@@ -38,15 +38,20 @@ public class RegistrationController {
 	public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
 	
 	// Construct default User Object
-//	User newUser = new User(username, password, firstName, lastName, email, phoneNumber);
+	User newUser = new User();
 	
 	public void register(){
 		//get the new user values from the register form
 		FacesContext context = FacesContext.getCurrentInstance();
-		User newUser = context.getApplication().evaluateExpressionGet(context, "#{user}", User.class);
+		newUser.setUsername(this.username);
+		newUser.setPassword(this.password);
+		newUser.setFirstName(this.firstName);
+		newUser.setLastName(this.lastName);
+		newUser.setEmail(this.email);
+		newUser.setPhoneNumber(this.phoneNumber);
 		
 		//put new user object into POST request
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", newUser);
+		context.getExternalContext().getApplicationMap().put("newUser", newUser);
 		
 		try {
 			context.getExternalContext().redirect("login.xhtml");

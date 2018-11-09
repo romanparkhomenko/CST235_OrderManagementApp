@@ -46,12 +46,12 @@ public class User {
 	
 	// Default Generic Constructor
 	public User(){
-		username = "GCURedTeam";
-		password = "password";
-		firstName = "Roman";
-		lastName = "Zachary";
-		email = "fake.email@gcu.edu";
-		phoneNumber = "1234567890";
+		username = getUsername();
+		password = getPassword();
+		firstName = getFirstName();
+		lastName = getLastName();
+		email = getEmail();
+		phoneNumber = getPhoneNumber();
 	}
 	
 	// Getters for user data

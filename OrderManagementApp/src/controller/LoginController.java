@@ -4,13 +4,13 @@ import java.io.IOException;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.context.FacesContext;
 
 import model.User;
 
 @ManagedBean
-@SessionScoped
+@ApplicationScoped
 public class LoginController {
 	
 	// Declare variables for LoginController
@@ -18,7 +18,11 @@ public class LoginController {
 	private String password;
 	
 	// Construct default User Object
-	User defaultUser = new User();
+	
+	User newUser = (User) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("newUser");
+	User defaultUser = new User("GCURedTeam","password", "Roman", "Zachary", "roman@test.com", "1234567890");
+//	User newUser = context.getSessionMap()["newUser"];
+			
 	
 	/* Getters and Setters for Username and Password
 	 * These grab the value from the form and set the respective variable. */
@@ -29,12 +33,23 @@ public class LoginController {
 	   
 	// Login function called by Login Form command button.
 	public void login() {
+
 		//checking console log for username
+		System.out.println(newUser.getUsername());
 		System.out.println(defaultUser.getUsername());
 		
         FacesContext context = FacesContext.getCurrentInstance();
+        
         // Conditional check to see if UN and password match form input, if not, print message.
-       if(this.username.equals(defaultUser.getUsername()) && this.password.equals(defaultUser.getPassword())){
+        if(this.username.equals(newUser.getUsername()) && this.password.equals(newUser.getPassword())){
+            context.getExternalContext().getSessionMap().put("user", newUser);
+            try {
+				context.getExternalContext().redirect("app/home.xhtml");
+			} catch (IOException e) {
+				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Whoops, your username and password are incorrect.");
+			    FacesContext.getCurrentInstance().addMessage("loginForm:password", msg);
+			}
+        } else if(this.username.equals(defaultUser.getUsername()) && this.password.equals(defaultUser.getPassword())){
             context.getExternalContext().getSessionMap().put("user", defaultUser);
             try {
 				context.getExternalContext().redirect("app/home.xhtml");
