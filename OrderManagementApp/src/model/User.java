@@ -46,12 +46,12 @@ public class User {
 	
 	// Default Generic Constructor
 	public User(){
-		username = getUsername();
-		password = getPassword();
-		firstName = getFirstName();
-		lastName = getLastName();
-		email = getEmail();
-		phoneNumber = getPhoneNumber();
+		username = "";
+		password = "";
+		firstName = "";
+		lastName = "";
+		email = "";
+		phoneNumber = "";
 	}
 	
 	// Getters for user data
