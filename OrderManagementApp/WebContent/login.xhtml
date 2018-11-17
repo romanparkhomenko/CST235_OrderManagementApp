@@ -27,7 +27,7 @@
       <b:row tooltip="Hint: username = GCURedTeam">
         <b:column col-sm="10" offset="1">
         <!-- <h:outputText value="Please enter your username." for="username" /> -->
-          <b:inputText placeholder="Username" id="username" value="#{loginController.username}"
+          <b:inputText placeholder="Username" id="username" value="#{user.username}"
                        ajax="true" autocomplete="false" update="@(.message)">
             <f:facet name="prepend">
               <b:icon name="user" />
@@ -42,7 +42,7 @@
       <b:row tooltip="Hint: password = password">
         <b:column col-md="10" offset="1">
         <!-- <h:outputText value="Please enter your password." /> -->
-          <b:inputSecret placeholder="Password" id="password" value="#{loginController.password}"
+          <b:inputSecret placeholder="Password" id="password" value="#{user.password}"
                          ajax="true" autocomplete="false" update="@(.message)">
             <f:facet name="prepend">
               <b:iconAwesome name="key" />
@@ -57,7 +57,7 @@
       <b:row>
       <b:column col-md="10" offset="1">
         <b:column col-md="6">
-          <b:commandButton value="login" onclick="ajax:loginController.login()" update="@form" look="primary" style="width:100%" />
+          <b:commandButton value="login" action="#{loginController.login}" update="@form" look="primary" style="width:100%" />
         </b:column>
         <b:column col-md="6">
           <b:commandButton value="register" href="register.xhtml" look="danger" style="width:100%" />

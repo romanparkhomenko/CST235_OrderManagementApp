@@ -1,72 +1,52 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
+import business.UserBusinessInterface;
 import model.User;
 
 @ManagedBean
-@ApplicationScoped
+@SessionScoped
 public class LoginController {
 	
-	// Declare variables for LoginController
-    private String username;
-	private String password;
-			
-	/* Getters and Setters for Username and Password
-	 * These grab the value from the form and set the respective variable. */
-	public String getUsername() {return username;}
-	public String getPassword() {return password;}
-	public void setUsername(String username) {this.username = username;}
-	public void setPassword(String password) {this.password = password;}
+	// Inject UserBusinessInterface
+	@Inject
+	private UserBusinessInterface userService;
 	   
 	// Login function called by Login Form command button.
-	public void login() {
+	public String login(){
 		
-		// Construct default User Object, if one exists in the application map, create a newUser object.
-		User newUser = (User) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("newUser");
-		User defaultUser = new User("GCURedTeam","password", "Roman", "Zachary", "roman@test.com", "1234567890");
-		
+		//Get the creds from the login form
 		FacesContext context = FacesContext.getCurrentInstance();
+		User user = context.getApplication().evaluateExpressionGet(context, "#{user}", User.class);
 		
-		/* Conditional check to see if a newUser exists in the Application hashmap,
-		 * if not, we'll skip the check for a new user and use the default user.
-		 */
-		if (newUser == null) {
-			System.out.println("newUser is null");
-		} else {
-			System.out.println(newUser.getUsername());
-			if(this.username.equals(newUser.getUsername()) && this.password.equals(newUser.getPassword())){
-	            context.getExternalContext().getSessionMap().put("user", newUser);
-	            try {
-					context.getExternalContext().redirect("app/home.xhtml");
-				} catch (IOException e) {
-					FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Whoops, your username and password are incorrect.");
-				    FacesContext.getCurrentInstance().addMessage("loginForm:password", msg);
-				}
-	        }
-		}
-        
-		// Checking console log for default username
-		System.out.println(defaultUser.getUsername());
-        // Conditional check to see if UN and password match form input, if not, print message.
-        if(this.username.equals(defaultUser.getUsername()) && this.password.equals(defaultUser.getPassword())){
-            context.getExternalContext().getSessionMap().put("user", defaultUser);
-            try {
-				context.getExternalContext().redirect("app/home.xhtml");
-			} catch (IOException e) {
-				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Whoops, your username and password are incorrect.");
-			    FacesContext.getCurrentInstance().addMessage("loginForm:password", msg);
+		//Call the array list from user service.
+		final List<User> users = userService.getUserList();
+		
+		//Loop through arraylist to see if login creds match existing user.
+		//If so, redirect to the homepage. 
+		for (int i = 0; i < users.size(); i++) {
+			User u = userService.getUser(i);
+			System.out.println(u.getUsername() + " " + u.getEmail());
+			if( u.getUsername().equals(user.getUsername()) && u.getPassword().equals(user.getPassword())) {
+				FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("user", u);
+				//go to main page if login data is correct
+				return "app/home.xhtml";
 			}
-        } else {
-        	FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Whoops, your username and password are incorrect.");
-            FacesContext.getCurrentInstance().addMessage("loginForm:password", msg);
-        }
-     }
+		}
+		
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Whoops, your username and password are incorrect.");
+	    FacesContext.getCurrentInstance().addMessage("loginForm:password", msg);
+		//refresh page if login data is incorrect
+		return "login.xhtml";
+	}
 	 
 	// Logout function called in home page.
     public void logout() {
@@ -78,5 +58,10 @@ public class LoginController {
 			e.printStackTrace();
 		}
     }
+    
+    // Get User Service
+    public UserBusinessInterface getService() {
+		return userService;
+	}
 	    
 }

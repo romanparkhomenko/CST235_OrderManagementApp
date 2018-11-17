@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 public class User {
 	
 	// Declare variables and input validation for User object.
-	@NotNull(message="Please enter a User ID. This is a required field.")
+	@NotNull(message="Please enter a Username. This is a required field.")
 	@Size(min=4, max=15)
 	private String username;
 	
@@ -36,6 +36,7 @@ public class User {
 	
 	// Constructor
 	public User(String username, String password, String firstName, String lastName, String email, String phoneNumber) {
+		super();
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -46,12 +47,7 @@ public class User {
 	
 	// Default Generic Constructor
 	public User(){
-		username = "";
-		password = "";
-		firstName = "";
-		lastName = "";
-		email = "";
-		phoneNumber = "";
+	
 	}
 	
 	// Getters for user data

@@ -24,7 +24,7 @@
       <b:row>
         <b:column col-sm="8" offset="2">
         <h:outputText value="Please enter a username" for="username" />
-          <b:inputText placeholder="Username" id="username" value="#{registrationController.username}"
+          <b:inputText placeholder="Username" id="username" value="#{user.username}"
                        ajax="true" autocomplete="false" update="@(.message)">
             <f:facet name="prepend">
               <b:icon name="user" />
@@ -39,7 +39,7 @@
       <b:row>
         <b:column col-md="8" offset="2">
         <h:outputText value="Please enter your password." />
-          <b:inputSecret placeholder="Password" id="password" value="#{registrationController.password}"
+          <b:inputSecret placeholder="Password" id="password" value="#{user.password}"
                          ajax="true" autocomplete="false" update="@(.message)">
             <f:facet name="prepend">
               <b:iconAwesome name="key" />
@@ -54,7 +54,7 @@
       <b:row>
         <b:column col-sm="8" offset="2">
         <h:outputText value="Please enter your first name." for="username" />
-          <b:inputText placeholder="First Name" id="firstName" value="#{registrationController.firstName}"
+          <b:inputText placeholder="First Name" id="firstName" value="#{user.firstName}"
                        ajax="true" autocomplete="false" update="@(.message)">
             <f:facet name="prepend">
               <b:icon name="text-height" />
@@ -69,7 +69,7 @@
       <b:row>
         <b:column col-sm="8" offset="2">
         <h:outputText value="Please enter your last name." for="username" />
-          <b:inputText placeholder="Last Name" id="lastName" value="#{registrationController.lastName}"
+          <b:inputText placeholder="Last Name" id="lastName" value="#{user.lastName}"
                        ajax="true" autocomplete="false" update="@(.message)">
             <f:facet name="prepend">
               <b:icon name="text-width" />
@@ -84,7 +84,7 @@
       <b:row>
         <b:column col-sm="8" offset="2">
         <h:outputText value="Please enter your email." for="username" />
-          <b:inputText placeholder="Email Address" id="email" value="#{registrationController.email}"
+          <b:inputText placeholder="Email Address" id="email" value="#{user.email}"
                        ajax="true" autocomplete="false" update="@(.message)">
             <f:facet name="prepend">
               <b:icon name="envelope" />
@@ -99,7 +99,7 @@
       <b:row>
         <b:column col-sm="8" offset="2">
         <h:outputText value="Please enter your phone number." for="username" />
-          <b:inputText placeholder="Phone Number" id="phoneNumber" value="#{registrationController.phoneNumber}"
+          <b:inputText placeholder="Phone Number" id="phoneNumber" value="#{user.phoneNumber}"
                        ajax="true" autocomplete="false" update="@(.message)">
             <f:facet name="prepend">
               <b:icon name="earphone" />

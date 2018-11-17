@@ -36,3 +36,10 @@
 .navbar img {
 	max-width: 100px;
 }
+
+table.product-table { width:100%; margin:20px 0; border-collapse:collapse; border-top:1px solid #ddd; border-left:1px solid #ddd; text-align: center;}
+table.product-table .heading { background:#666; color:#fff; text-transform:uppercase; text-align:center; }
+table.product-table th, table td { border-bottom:1px solid #ddd; border-right:1px solid #ddd; padding: 0.5rem;}
+table.product-table th { font-weight:bold; }
+table.product-table tr:nth-of-type(even) { background:#eee; color: black; }
+table.product-table .hover { background:#ccc; }
