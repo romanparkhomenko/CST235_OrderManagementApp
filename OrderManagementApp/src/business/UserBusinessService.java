@@ -15,7 +15,7 @@ public class UserBusinessService implements UserBusinessInterface {
 	
 	// Constructor adds one generic user.
 	public UserBusinessService(){
-		users.add(new User("GCURedTeam","password", "Roman", "Zachary", "roman@test.com", "1234567890"));
+		users.add(new User("admin","admin", "Roman", "Zachary", "roman@test.com", "1234567890"));
 	}
 	// Add user to ArrayList
 	public void addUser(User user){

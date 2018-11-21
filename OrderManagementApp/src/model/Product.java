@@ -2,22 +2,38 @@ package model;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @ManagedBean
 @SessionScoped
 public class Product {
-	private String productName;
-	private int quantity;
+	@NotNull(message="Please enter an ID Number.")
+	@Size(min=1, max=3)
 	private int id;
-	private double cost;
+	
+	@NotNull(message="Please enter a Product Name")
+	@Size(min=1, max=40)
+	private String productName;
+	
+	@NotNull(message="Please enter a Product Quantity")
+	@Size(min=1, max=1000)
+	private int quantity;
+	
+	@NotNull(message="Please enter the Product Cost")
+	@Size(min=1, max=1000)
+	private float cost;
+	
+	@NotNull(message="Please enter the Product Description")
+	@Size(min=1, max=1000)
 	private String description;
 	
 	//Constructor
-	public Product(String productName, int quantity, int id, double cost, String description) {
+	public Product(int id, String productName, int quantity,  float cost, String description) {
 		super();
+		this.id = id;
 		this.productName = productName;
 		this.quantity = quantity;
-		this.id = id;
 		this.cost = cost;
 		this.description = description;
 	}
@@ -32,17 +48,17 @@ public class Product {
 	}
 	
     // Getters for user data
+	public int getID() {return id;}
 	public String getProductName() {return productName;}
 	public int getQuantity() {return quantity;}
-	public int getId() {return id;}
-	public double getCost() {return cost;}
+	public float getCost() {return cost;}
 	public String getDescription() {return description;}
 	
 	// Setters for user data
+	public void setID(int id) {this.id = id;}
 	public void setProductName(String productName) {this.productName = productName;}
 	public void setQuantity(int quantity) {this.quantity = quantity;}
-	public void setId(int id) {this.id = id;}
-	public void setCost(double cost) {this.cost = cost;}
+	public void setCost(float cost) {this.cost = cost;}
 	public void setDescription(String description) {this.description = description;}
 		
 }

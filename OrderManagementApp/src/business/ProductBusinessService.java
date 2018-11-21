@@ -1,32 +1,43 @@
 package business;
 
 import java.util.ArrayList;
-import java.util.List;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+
+import database.DataAccessInterface;
 import model.Product;
 
 @Stateless
 @Local(ProductBusinessInterface.class)
 public class ProductBusinessService implements ProductBusinessInterface {
 	
-	// ArrayList users to hold user object
-	public List<Product> products = new ArrayList<Product>();
+	@Inject
+	DataAccessInterface db;
+
+	@Override
+	public int addProduct(Product product) {
+		return db.addProduct(product);
+	}
 	
-	// Constructor adds one generic user.
-	public ProductBusinessService(){
-		products.add(new Product("AlienWare 17", 5, 0001, 1500.00, "The best gaming laptop the dell has to offer."));
+	@Override
+	public ArrayList<Product> readAll() {
+		return db.readAll();
 	}
-	// Add user to ArrayList
-	public void addProduct(Product product){
-		products.add(product);
+	
+	@Override
+	public Product readOne(int id){
+		return db.readOne(id);
 	}
-	// Get user from ArrayList
-	public Product getProduct(int index){
-		return products.get(index);
+	
+	@Override
+	public int updateProduct(int id, Product product) {
+		return db.updateProduct(id, product);
 	}
-	// Get entire ArrayList
-	public List<Product> getProductList(){
-		return this.products;
+	
+	@Override
+	public int deleteProduct(int id) {
+		return db.deleteProduct(id);
 	}
+	
 }

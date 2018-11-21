@@ -1,15 +1,13 @@
-package business;
+package database;
 
 import java.util.ArrayList;
 
 import javax.ejb.Local;
-import javax.ejb.Stateless;
 
 import model.Product;
 
-@Stateless
 @Local
-public interface ProductBusinessInterface {
+public interface DataAccessInterface {
 	// All CRUD Operations
 	
 	// CREATE

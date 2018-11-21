@@ -16,17 +16,18 @@
   <b:container styleClass="productCreation">
   	<b:row>
   		<b:column col-md="8">
-  		<h2>Product Creation</h2>
+  		<h2>Product Management</h2>
   		</b:column>
   	</b:row>
   	
   	<b:row>
+  	<!-- CREATE PRODUCT PANEL -->
   		<b:column col-md="4">
   			<b:panel title="Create A Product" collapsible="false" rendered="#{not empty product}">
   <!-- BEGIN PRODUCT FORM -->
   	<b:row>
   	 <b:column col-md="12" styleClass="product-form">
-  		<h:form id="registrationForm">
+  		<h:form id="createForm">
   	
 	      <b:row>
 	        <b:column col-sm="12">
@@ -38,21 +39,14 @@
 	      </b:row>
       
 	      <b:row>
-	        <b:column col-md="4">
+	        <b:column col-md="6">
 	        <h:outputText value="Quantity:" />
 	          <b:inputText placeholder="Quantity" id="quantity" value="#{product.quantity}"
 	                         ajax="true" autocomplete="false" update="@(.message)">
 	          </b:inputText>
 	        </b:column>
-	        
-	        <b:column col-sm="4">
-        	<h:outputText value="ID #:" for="id" />
-          	  <b:inputText placeholder="ID #:" id="id" value="#{product.id}"
-                       ajax="true" autocomplete="false" update="@(.message)">
-	      	  </b:inputText>
-        	</b:column>
         	
-        	<b:column col-sm="4">
+        	<b:column col-sm="6">
         	<h:outputText value="Cost" for="cost" />
           	  <b:inputText placeholder="Cost:" id="cost" value="#{product.cost}"
                        ajax="true" autocomplete="false" update="@(.message)">
@@ -75,9 +69,6 @@
 		<b:column col-md="12" style-class="message">
 		   <b:message for="cost" />
 		</b:column>
-		<b:column col-md="12" style-class="message">
-		   <b:message for="id" />
-		 </b:column>
 		 <b:column col-md="12" styleClass="message">
 		    <b:message for="quantity"/>
 		 </b:column>
@@ -88,7 +79,7 @@
       
       <b:row>
       <b:column col-md="12">
-          <b:commandButton value="Create" action="#{productController.create}" look="danger" style="width:100%" />
+          <b:commandButton value="Create" action="#{productController.create}" look="success" style="width:100%" />
         </b:column>
       </b:row>
   	</h:form>
@@ -97,10 +88,132 @@
   	 <!-- END PRODUCT FORM -->
   			</b:panel>
   		</b:column>
+  		<!-- END CREATE PRODUCT PANEL -->
   		
-  		<b:column col-md="8">
-  			<b:panel title="Product Information" collapsible="false" rendered="#{not empty product}">
-  				<h:dataTable value="#{productController.service.productList}" var="product" styleClass="product-table" headerClass="order-table-header" rowClasses="order-table-odd, order-table-even">
+  		<!-- UPDATE PRODUCT PANEL -->
+  		<b:column col-md="4">
+  			<b:panel title="Update A Product" collapsible="false" rendered="#{not empty product}">
+  <!-- BEGIN PRODUCT FORM -->
+  	<b:row>
+  	 <b:column col-md="12" styleClass="product-form">
+  		<h:form id="updateForm">
+  	
+	      <b:row>
+	      <b:column col-sm="3">
+	        <h:outputText value="ID:" for="ID" />
+	          <b:inputText placeholder="ID" id="ID" value="#{product.ID}"
+	                       ajax="true" autocomplete="false" update="@(.message)">
+		      </b:inputText>
+	        </b:column>
+	      
+	        <b:column col-sm="9">
+	        <h:outputText value="Product Name:" for="productName" />
+	          <b:inputText placeholder="Product Name" id="productName" value="#{product.productName}"
+	                       ajax="true" autocomplete="false" update="@(.message)">
+		      </b:inputText>
+	        </b:column>
+	      </b:row>
+      
+	      <b:row>
+	        <b:column col-md="6">
+	        <h:outputText value="Quantity:" />
+	          <b:inputText placeholder="Quantity" id="quantity" value="#{product.quantity}"
+	                         ajax="true" autocomplete="false" update="@(.message)">
+	          </b:inputText>
+	        </b:column>
+        	
+        	<b:column col-sm="6">
+        	<h:outputText value="Cost" for="cost" />
+          	  <b:inputText placeholder="Cost:" id="cost" value="#{product.cost}"
+                       ajax="true" autocomplete="false" update="@(.message)">
+	      	  </b:inputText>
+        	</b:column>
+	      </b:row>
+      
+      <b:row>
+        <b:column col-sm="12">
+        <h:outputText value="Description" for="description" />
+          <b:inputText placeholder="Description" id="description" value="#{product.description}"
+                       ajax="true" autocomplete="false" update="@(.message)">
+	      </b:inputText>
+        </b:column>
+      </b:row>
+      
+		<b:column col-md="12" style-class="message">
+		   <b:message for="description" />
+		</b:column>
+		<b:column col-md="12" style-class="message">
+		   <b:message for="cost" />
+		</b:column>
+		 <b:column col-md="12" styleClass="message">
+		    <b:message for="quantity"/>
+		 </b:column>
+		 <b:column col-md="12" style-class="message">
+		    <b:message for="productName" />
+		 </b:column>
+		 <b:column col-md="12" style-class="message">
+		   <b:message for="ID" />
+		</b:column>
+      
+      
+      <b:row>
+      <b:column col-md="12">
+          <b:commandButton value="Update" action="#{productController.update}" look="warning" style="width:100%" />
+        </b:column>
+      </b:row>
+  	</h:form>
+  		</b:column>
+  	</b:row>
+  	 <!-- END PRODUCT FORM -->
+  			</b:panel>
+  		</b:column>
+  		<!-- END UPDATE PRODUCT PANEL -->
+  		
+  		<!-- DELETE PRODUCT PANEL -->
+  		<b:column col-md="4">
+  			<b:panel title="Delete A Product" collapsible="false" rendered="#{not empty product}">
+  <!-- BEGIN DELETE PRODUCT FORM -->
+  	<b:row>
+  	 <b:column col-md="12" styleClass="product-form">
+  		<h:form id="deleteForm">
+  	
+	      <b:row>
+	        <b:column col-sm="12">
+	        <h:outputText value="Enter the ID Number to delete" for="id" />
+	          <b:inputText placeholder="Enter the ID Number to delete" id="id" value="#{product.ID}"
+	                       ajax="true" autocomplete="false" update="@(.message)">
+		      </b:inputText>
+	        </b:column>
+	      </b:row>
+      
+		<b:column col-md="12" style-class="message">
+		   <b:message for="id" />
+		</b:column>
+      <b:row>
+      <b:column col-md="12">
+          <b:commandButton value="Delete" action="#{productController.delete}" look="danger" style="width:100%" />
+        </b:column>
+      </b:row>
+  	</h:form>
+  		</b:column>
+  	</b:row>
+  	 <!-- END DELETE PRODUCT FORM -->
+  			</b:panel>
+  		</b:column>
+  		<!-- END DELETE PRODUCT PANEL -->
+  	</b:row>
+  	
+  	<!-- ROW FOR PRODUCT TABLE -->
+  	<b:row>
+  	<!-- PRODUCT DISPLAY TABLE PANEL -->
+  		<b:column col-md="12">
+  			<b:panel title="All Products" collapsible="false" rendered="#{not empty product}">
+  				<h:dataTable value="#{productController.service.readAll()}" var="product" styleClass="product-table" headerClass="order-table-header" rowClasses="order-table-odd, order-table-even">
+  				
+  			<h:column>
+				<f:facet name="header">ID #</f:facet>
+				#{product.ID}	
+			</h:column>
 			<h:column>
 				<f:facet name="header">Product Name</f:facet>
 				#{product.productName}	
@@ -109,11 +222,6 @@
 			<h:column>
 				<f:facet name="header">Quantity</f:facet>
 				#{product.quantity}		
-			</h:column>
-		
-			<h:column>
-				<f:facet name="header">ID #:</f:facet>
-				#{product.id}		
 			</h:column>
 		
 			<h:column>
@@ -128,6 +236,7 @@
 	</h:dataTable>
   			</b:panel>
   		</b:column>
+  		<!-- PRODUCT DISPLAY TABLE PANEL -->
   	</b:row>
   	
   </b:container>
