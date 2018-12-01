@@ -4,28 +4,30 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @ManagedBean
 @SessionScoped
+@XmlRootElement(name="Product") 
 public class Product {
-	@NotNull(message="Please enter an ID Number.")
-	@Size(min=1, max=3)
+//	@NotNull(message="Please enter an ID Number.")
+//	@Size(min=1, max=3)
 	private int id;
 	
-	@NotNull(message="Please enter a Product Name")
-	@Size(min=1, max=40)
+//	@NotNull(message="Please enter a Product Name")
+//	@Size(min=1, max=40)
 	private String productName;
 	
-	@NotNull(message="Please enter a Product Quantity")
-	@Size(min=1, max=1000)
+//	@NotNull(message="Please enter a Product Quantity")
+//	@Size(min=1, max=1000)
 	private int quantity;
 	
-	@NotNull(message="Please enter the Product Cost")
-	@Size(min=1, max=1000)
+//	@NotNull(message="Please enter the Product Cost")
+//	@Size(min=1, max=1000)
 	private float cost;
 	
-	@NotNull(message="Please enter the Product Description")
-	@Size(min=1, max=1000)
+//	@NotNull(message="Please enter the Product Description")
+//	@Size(min=1, max=1000)
 	private String description;
 	
 	//Constructor
