@@ -11,6 +11,17 @@ import javax.inject.Inject;
 import business.UserBusinessInterface;
 import model.User;
 
+/**
+* The RegistrationController is a view scoped, managed bean that controls new user registration. 
+* Prior to FORM-Auth implementation, the LoginController utilized the UserBusinessInterface
+* to manage user authentication for login.
+*
+* @author  Roman Parkhomenko
+* @version 1.0
+* @since   2018-12-08 
+* @deprecated Since admins are logged in through j_username and FROM-Auth, the registration hashmap is not recommended. 
+*/
+
 @ManagedBean
 @ViewScoped
 public class RegistrationController {
@@ -29,7 +40,7 @@ public class RegistrationController {
 		userService.addUser(user);
 		
 		try {
-			context.getExternalContext().redirect("login.xhtml");
+			context.getExternalContext().redirect("../faces/login.xhtml");
 		} catch (IOException e) {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Whoops, your username and password are incorrect.");
 		    FacesContext.getCurrentInstance().addMessage("registrationForm:password", msg);

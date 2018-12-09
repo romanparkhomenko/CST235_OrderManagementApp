@@ -8,6 +8,14 @@ import javax.inject.Inject;
 import business.ProductBusinessInterface;
 import model.Product;
 
+/**
+* The ProductController is a session scoped, managed bean that controls product management. 
+* By implementing the product service, this controller handles the users actions to the products.
+*
+* @author  Roman Parkhomenko
+* @version 1.0
+* @since   2018-12-08 
+*/
 
 @ManagedBean
 @SessionScoped

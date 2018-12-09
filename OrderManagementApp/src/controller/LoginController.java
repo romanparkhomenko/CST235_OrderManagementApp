@@ -12,6 +12,16 @@ import javax.inject.Inject;
 import business.UserBusinessInterface;
 import model.User;
 
+/**
+* The LoginController is a session scoped, managed bean that controls user login. 
+* Prior to FORM-Auth implementation, the LoginController utilized the UserBusinessInterface
+* to manage user authentication for login.
+*
+* @author  Roman Parkhomenko
+* @version 1.0
+* @since   2018-12-08 
+*/
+
 @ManagedBean
 @SessionScoped
 public class LoginController {
@@ -53,10 +63,19 @@ public class LoginController {
     	FacesContext context = FacesContext.getCurrentInstance();
     	context.getExternalContext().invalidateSession();
         try {
-			context.getExternalContext().redirect("../login.xhtml");
+			context.getExternalContext().redirect("../faces/login.xhtml");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+    }
+    
+ // Logout function called in home page.
+    public String onLogoff() {
+    	// Invalidate the Session to clear the security token
+    	FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+    		
+    	// Redirect to a protected page (so we get a full HTTP Request) to get Login Page
+    	return "../faces/login.xhtml?faces-redirect=true";
     }
     
     // Get User Service

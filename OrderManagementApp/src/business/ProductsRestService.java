@@ -1,5 +1,16 @@
 package business;
 
+/**
+* The ProductRestService is a JAX-RS implementation to build
+* a RESTful API. The service is request scoped and both produces
+* and consumes xml and json input. The Path for the REST API
+* is /rest/products.
+*
+* @author  Roman Parkhomenko
+* @version 1.0
+* @since   2018-12-08 
+*/
+
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;

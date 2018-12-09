@@ -12,8 +12,8 @@
     <h:body>
     <ui:include src="/resources/layouts/topNavBar.xhtml" />
   <b:container class="content">
-  
-  <!-- BEGIN LOGIN FORM -->
+  	 
+  	  <!-- BEGIN REGULAR LOGIN FORM -->
   	<b:row>
   	 <b:column col-md="4" offset="4" styleClass="app-login-form">
   	 <b:row>
@@ -23,12 +23,12 @@
   	 </b:column>
   	 </b:row>
   	 
-  	<h:form id="loginForm">
-      <b:row tooltip="Hint: username = admin">
+  	<form id="loginForm" method="post" action="j_security_check">
+      <b:row tooltip="Hint: username = gcu">
         <b:column col-sm="10" offset="1">
         <!-- <h:outputText value="Please enter your username." for="username" /> -->
-          <b:inputText placeholder="Username" id="username" value="#{user.username}"
-                       ajax="true" autocomplete="false" update="@(.message)">
+          <b:inputText placeholder="Username" fieldId="j_username" name="j_username"
+                       autocomplete="false" >
             <f:facet name="prepend">
               <b:icon name="user" />
             </f:facet>
@@ -39,11 +39,11 @@
         </b:column>
       </b:row>
       
-      <b:row tooltip="Hint: password = admin">
+      <b:row tooltip="Hint: password = Lopes2018!">
         <b:column col-md="10" offset="1">
         <!-- <h:outputText value="Please enter your password." /> -->
-          <b:inputSecret placeholder="Password" id="password" value="#{user.password}"
-                         ajax="true" autocomplete="false" update="@(.message)">
+          <b:inputSecret placeholder="Password" fieldId="j_password" name="j_password"
+                         autocomplete="false">
             <f:facet name="prepend">
               <b:iconAwesome name="key" />
             </f:facet>
@@ -57,17 +57,18 @@
       <b:row>
       <b:column col-md="10" offset="1">
         <b:column col-md="6">
-          <b:commandButton value="login" action="#{loginController.login}" update="@form" look="primary" style="width:100%" />
+          <h:commandButton value="login" type="submit" look="primary" styleClass="btn btn-primary" style="width:100%" />
         </b:column>
         <b:column col-md="6">
-          <b:commandButton value="register" href="register.xhtml" look="danger" style="width:100%" />
+          <h:button value="register" outcome="register.xhtml" styleClass="btn btn-danger" look="danger" style="width:100%" />
         </b:column>
         </b:column>
       </b:row>
-  			</h:form>
+  			</form>
   		</b:column>
   	</b:row>
-  	 <!-- END LOGIN FORM -->
+  	 <!-- END REGULAR LOGIN FORM -->
+  	 
   </b:container>
     </h:body>
 </html>

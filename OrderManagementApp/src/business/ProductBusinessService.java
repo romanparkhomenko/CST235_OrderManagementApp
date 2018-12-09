@@ -8,6 +8,16 @@ import javax.inject.Inject;
 import database.DataAccessInterface;
 import model.Product;
 
+/**
+* The ProductBusinessService is a Stateless, Local bean which encapsulates
+* product management by implementing the DataAccessInterface. The methods used
+* in this service call the CRUD methods of the DataAccessInterface.
+*
+* @author  Roman Parkhomenko
+* @version 1.0
+* @since   2018-12-08 
+*/
+
 @Stateless
 @Local(ProductBusinessInterface.class)
 public class ProductBusinessService implements ProductBusinessInterface {

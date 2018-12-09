@@ -43,3 +43,33 @@ table.product-table th, table td { border-bottom:1px solid #ddd; border-right:1p
 table.product-table th { font-weight:bold; }
 table.product-table tr:nth-of-type(even) { background:#eee; color: black; }
 table.product-table .hover { background:#ccc; }
+
+#login-return {
+	display: block; 
+	margin: 0 auto; 
+	background: #0099cc;
+ 	color: white; 
+ 	font-size: 1.5rem;
+ 	padding: 1rem;
+ 	max-width: 250px;
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

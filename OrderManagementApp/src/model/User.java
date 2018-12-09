@@ -1,7 +1,11 @@
 package model;
 
+import java.security.Principal;
+
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -11,7 +15,7 @@ public class User {
 	
 	// Declare variables and input validation for User object.
 	@NotNull(message="Please enter a Username. This is a required field.")
-	@Size(min=4, max=15)
+	@Size(min=3, max=15)
 	private String username;
 	
 	@NotNull(message="Please enter a Password. This is a required field.")
@@ -48,6 +52,28 @@ public class User {
 	// Default Generic Constructor
 	public User(){
 	
+	}
+	
+	@PostConstruct
+	public void init() {
+		// Get the logged in Principle
+		Principal principle= FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+		if (principle == null) {
+			setUsername("admin");
+			setPassword("admin");
+			setFirstName("Unknown");
+			setLastName("Unknown");
+			setEmail("admin@acme.com");
+			setPhoneNumber("1234567890");
+		}
+		else {
+			setUsername("gcu");
+			setPassword("Lopes2018!");
+			setFirstName(principle.getName());
+			setLastName("GcuUser");
+			setEmail("gcuUser@acme.com");
+			setPhoneNumber("1234567890");
+		}
 	}
 	
 	// Getters for user data

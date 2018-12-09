@@ -7,6 +7,14 @@ import javax.ejb.Stateless;
 
 import model.Product;
 
+/**
+* The ProductBusinessInterface is a Stateless, Local, interface used to 
+* implement the ProductBusinessService
+*
+* @author  Roman Parkhomenko
+* @version 1.0
+* @since   2018-12-08 
+*/
 @Stateless
 @Local
 public interface ProductBusinessInterface {

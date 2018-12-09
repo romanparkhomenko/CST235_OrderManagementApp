@@ -6,6 +6,16 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import model.User;
 
+/**
+* The ProductBusinessService is a Stateless, Local bean which encapsulates
+* user management by implementing the UserBusinessInterface. This service
+* allows the management of a hashmap of users prior to FORM-Authentication.
+*
+* @author  Roman Parkhomenko
+* @version 1.0
+* @since   2018-12-08 
+*/
+
 @Stateless
 @Local(UserBusinessInterface.class)
 public class UserBusinessService implements UserBusinessInterface {

@@ -35,7 +35,7 @@
   			<b:panel title="Products" collapsible="false" >
   				<b:column col-md="12">
   				<h:form>
-  					<b:commandButton value="Manage Products" action="#{productController.createPage}" look="primary" style="width:100%" />
+  					<b:button value="Manage Products" outcome="ProductCreation.xhtml" look="primary" style="width:100%" />
         		</h:form>
   				</b:column>
   			</b:panel>
@@ -45,7 +45,7 @@
   	<b:row>
   		<b:column col-md="4">
   		<h:form>
-  			<b:commandButton value="logout" action="#{loginController.logout}" look="danger" style="width:100%" />
+  			<b:commandButton value="logout" action="#{loginController.onLogoff()}" look="danger" style="width:100%" />
         </h:form>
   		</b:column>
   	</b:row>
